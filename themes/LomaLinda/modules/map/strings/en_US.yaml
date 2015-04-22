@@ -1,0 +1,10 @@
+--- 
+common: 
+    core: 
+        ui: 
+            search: 
+                placeholders: 
+                    search: Search Map
+                    searchCategory: 'Search %s' 
+                    searchAllCategories: Search all categories 
+...

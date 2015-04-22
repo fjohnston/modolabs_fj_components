@@ -1,0 +1,68 @@
+---
+common:
+    title: Loma Linda Calendar Event
+    controllerConfigs:
+        KGOUIListItem: info.objdefs.listitem
+        KGOUIDetail: info.objdefs.detail
+    dataObjects:
+    -   KGOCalendarEvent
+    objdefs:
+        listitem:
+            fields:
+                location:
+                -   kgoResolveType: value
+                    kgoResolveValue: kgocalendar:location
+                    kgoResolveProcessors:
+                    -   class: KGOTrimToNullDataProcessor
+        detail:
+            regions:
+            -   name: content
+                contents:
+                -   class: KGOHTMLController
+                    requiresData: true
+                    fields:
+                        heading:
+                        -   kgoResolveType: localize
+                            kgoResolveValue: core.ui.calendar.headings.location
+                        html:
+                        -   kgoResolveType: value
+                            kgoResolveValue: kgocalendar:location
+                            kgoResolveProcessors:
+                            -   class: KGOTrimToNullDataProcessor
+                            -   class: KGOHTMLEncodeDataProcessor
+                -   class: KGOHTMLController
+                    requiresData: true
+                    fields:
+                        heading:
+                        -   kgoResolveType: localize
+                            kgoResolveValue: core.ui.calendar.headings.description
+                        html:
+                        -   kgoResolveType: value
+                            kgoResolveValue: kgo:description
+                            kgoResolveProcessors:
+                            -   class: KGOTrimToNullDataProcessor
+                            -   class: KGOHTMLEncodeDataProcessor
+                            -   class: KGORegexDataProcessor
+                                options:
+                                    search: /(http|https):\/\/([\S]*)/
+                                    replace: <a href="$0">$0</a>
+                -   class: KGOListController
+                    requiresData: true
+                    fields:
+                        heading:
+                        -   kgoResolveType: localize
+                            kgoResolveValue: core.ui.calendar.headings.website
+                    options:
+                        grouped: true
+                        inset: true
+                    regions:
+                    -   name: items
+                        contents:
+                        -   class: KGOListItemController
+                            source:
+                            -   kgoResolveType: value
+                                kgoResolveValue: kgocalendar:url
+                                kgoResolveProcessors:
+                                -   class: KGOTrimToNullDataProcessor
+                                -   class: KGOURLsToLinksDataProcessor
+...

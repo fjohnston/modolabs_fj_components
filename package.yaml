@@ -1,0 +1,10 @@
+---
+id: modolabs/modo_lomalinda_components
+description: Loma Linda Components
+license: commercial
+version: 1.0-beta1
+require:
+    kurogo/kurogo-core:
+    -   '2.1.*'
+    -   '2.2.*'
+...

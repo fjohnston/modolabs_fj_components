@@ -1,0 +1,25 @@
+---
+common:
+    title: Loma Linda News Item
+    dataObjects:
+    -   KGONewsItem
+    controllerConfigs:
+        KGOUIListItem: info.objdefs.listitem
+        KGOUIDetail: info.objdefs.detail
+    objdefs:
+        listitem:
+            fields:
+                thumbnail:
+                    kgoResolveType: value
+                    kgoResolveValue: kgonews:image
+                    kgoResolveProcessors:
+                    -   class: KGOImageDataProcessor
+                        options:
+                            crop: 1
+                            maxWidth: 220
+                            maxHeight: 220
+        detail:
+            fields:
+                description: null
+                thumbnail: null
+...

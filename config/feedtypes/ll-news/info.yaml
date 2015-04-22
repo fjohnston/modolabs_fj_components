@@ -1,0 +1,29 @@
+---
+title: 'Loma Linda News'
+dataObjects:
+-   KGONewsItem
+args:
+    dataModel: KGONewsDataModel
+    dataRetriever: KGOURLDataRetriever
+    dataParser: KGORSSDataParser
+    sourceEncoding: ISO-8859-1
+    itemtype: ll-newsitem
+    processors:
+        kgonews:image:
+            -   class: KGOAlternateDataProcessor
+                options:
+                    args:
+                    -   kgonews:thumbnail
+config:
+-   class: KGOFormElementControllerText
+    validators:
+    -   class: KGOURLValidator
+    options:
+        required: true
+    fields:
+        label: URL
+        description: The URL to this feed
+    controller:
+        upload: true
+        config: baseURL
+...
